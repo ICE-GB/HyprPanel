@@ -66,3 +66,22 @@
         0em
     );
 }
+
+// TODO 拆分并添加配置
+.taskbar .indicator.active {
+  margin-left: $bar-buttons-windowtitle-spacing;
+  background-color: $primary-fg;
+  border-radius: $radius;
+  min-height: 4pt;
+  min-width: 6pt;
+  margin: 1pt;
+}
+
+$bar-buttons-taskbar-spacing: 4px;
+
+.taskbar {
+  // transition: 300ms * .5;
+  margin-left: $bar-buttons-taskbar-spacing;
+  margin-right: $bar-buttons-taskbar-spacing;
+  color: if($bar-buttons-monochrome, $bar-buttons-icon, $bar-buttons-workspaces-available);
+}

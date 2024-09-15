@@ -9,6 +9,7 @@ import { Bluetooth } from './bluetooth/index';
 import { BatteryLabel } from './battery/index';
 import { Clock } from './clock/index';
 import { SysTray } from './systray/index';
+import { TaskBar } from './task_bar/index';
 
 // Custom Modules
 import { Ram } from '../../customModules/ram/index';
@@ -32,6 +33,7 @@ export {
     Notifications,
     Volume,
     Network,
+    TaskBar,
     Bluetooth,
     BatteryLabel,
     Clock,

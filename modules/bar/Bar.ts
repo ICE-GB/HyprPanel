@@ -1,6 +1,7 @@
 const hyprland = await Service.import('hyprland');
 
 import {
+    TaskBar,
     Menu,
     Workspaces,
     ClientTitle,
@@ -71,6 +72,7 @@ const isLayoutEmpty = (layout: BarLayout): boolean => {
 };
 
 const widget = {
+    taskbar: (): Button<Child, Attribute> => WidgetContainer(TaskBar()),
     battery: (): Button<Child, Attribute> => WidgetContainer(BatteryLabel()),
     dashboard: (): Button<Child, Attribute> => WidgetContainer(Menu()),
     workspaces: (monitor: number): Button<Child, Attribute> => WidgetContainer(Workspaces(monitor)),

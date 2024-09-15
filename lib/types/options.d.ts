@@ -16,6 +16,7 @@ export type RecursiveOptionsObject = {
 
 export type BarLocation = 'top' | 'bottom';
 export type BarModule =
+    | 'taskbar'
     | 'battery'
     | 'dashboard'
     | 'workspaces'

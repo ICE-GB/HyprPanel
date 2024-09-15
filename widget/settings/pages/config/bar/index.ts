@@ -379,6 +379,28 @@ export const BarSettings = (): Scrollable<Gtk.Widget, Gtk.Widget> => {
 
                 /*
                  ******************************
+                 *         TASK BAR           *
+                 ******************************
+                 */
+                Header('Task Bar'),
+                Option({
+                    opt: options.bar.taskbar.monochrome,
+                    title: 'Use mono icon',
+                    type: 'boolean',
+                }),
+                Option({
+                    opt: options.bar.taskbar.iconSize,
+                    title: 'Icon Size',
+                    type: 'number',
+                }),
+                Option({
+                    opt: options.bar.taskbar.exclusive,
+                    title: 'Exclusive',
+                    type: 'boolean',
+                }),
+
+                /*
+                 ******************************
                  *       WINDOW TITLES        *
                  ******************************
                  */

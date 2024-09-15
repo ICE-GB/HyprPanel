@@ -143,6 +143,13 @@ $transparency-value-hover: 1 - $bar-button-background-hover-opacity-ratio;
         );
     }
 
+    // TODO 拆分并添加配置
+    &.taskbar {
+      margin: 0px;
+      padding: 0px;
+      background-color: transparentize(if($bar-buttons-monochrome, $bar-buttons-background, $bar-buttons-windowtitle-background), $transparency-value);
+    }
+
     &.workspaces {
         background-color: transparentize(
             if($bar-buttons-monochrome, $bar-buttons-background, $bar-buttons-workspaces-background),

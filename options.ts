@@ -875,18 +875,18 @@ const options = mkOptions(OPTIONS, {
         layouts: opt<BarLayouts>({
             '1': {
                 left: ['dashboard', 'workspaces', 'windowtitle'],
-                middle: ['media'],
-                right: ['volume', 'clock', 'notifications'],
+                middle: ['clock'],
+                right: ['media', 'volume', 'notifications'],
             },
             '2': {
                 left: ['dashboard', 'workspaces', 'windowtitle'],
-                middle: ['media'],
-                right: ['volume', 'clock', 'notifications'],
+                middle: ['clock'],
+                right: ['media', 'volume', 'notifications'],
             },
             '0': {
-                left: ['dashboard', 'workspaces', 'windowtitle'],
-                middle: ['media'],
-                right: ['volume', 'network', 'bluetooth', 'battery', 'systray', 'clock', 'notifications'],
+                left: ['dashboard', 'workspaces', 'taskbar', 'windowtitle'],
+                middle: ['clock'],
+                right: ['media', 'volume', 'network', 'bluetooth', 'battery', 'systray', 'notifications'],
             },
         }),
         launcher: {
@@ -936,6 +936,11 @@ const options = mkOptions(OPTIONS, {
             workspaceMask: opt(false),
             reverse_scroll: opt(false),
             scroll_speed: opt(5),
+        },
+        taskbar: {
+            iconSize: opt(0),
+            monochrome: opt(false),
+            exclusive: opt(false),
         },
         volume: {
             label: opt(true),
