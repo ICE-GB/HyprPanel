@@ -44,7 +44,7 @@ const Stats = (): BoxWidget => {
                         return { total: 0, used: 0, percentage: 0 };
                     }
 
-                    const ramOut = out.split('\n').find((line) => line.includes('Mem:'));
+                    const ramOut = out.split('\n').find((line) => line.includes('Mem:') || line.includes('内存：'));
 
                     if (ramOut === undefined) {
                         return { total: 0, used: 0, percentage: 0 };
