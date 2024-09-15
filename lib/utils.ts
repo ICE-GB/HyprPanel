@@ -19,6 +19,7 @@ export type Binding<T> = import('types/service').Binding<any, any, T>;
  */
 export function icon(name: string | null, fallback = icons.missing): string {
     const validateSubstitute = (name: string): name is SubstituteKeys => name in substitutes;
+    const foundMatch = (name: string, substituteKey: string) => RegExp(substituteKey, 'i').test(name);
 
     if (!name) return fallback || '';
 
@@ -26,8 +27,13 @@ export function icon(name: string | null, fallback = icons.missing): string {
 
     let icon: string = name;
 
+    // 增强substitutes，支持正则匹配
     if (validateSubstitute(name)) {
         icon = substitutes[name];
+    } else {
+        Object.entries(substitutes).forEach(([key, value]) => {
+            icon = foundMatch(name, key) ? value : icon;
+        });
     }
 
     if (Utils.lookUpIcon(icon)) return icon;
