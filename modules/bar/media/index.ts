@@ -19,7 +19,7 @@ const Media = (): BarBoxChild => {
         isVis.value = !show_active_only.value || mpris.players.length > 0;
     });
 
-    const changedFunc = () => {
+    const changedFunc = (): void => {
         const curPlayer = getCurrentPlayer(activePlayer.value);
         activePlayer.value = curPlayer;
         isVis.value = !show_active_only.value || mpris.players.length > 0;
@@ -51,7 +51,7 @@ const Media = (): BarBoxChild => {
     const songIcon = Variable('');
     const songTitle = Variable('');
 
-    const updateLabelFunc = () => {
+    const updateLabelFunc = (): string => {
         if (activePlayer.value && show_label.value) {
             const { track_title, identity, track_artists } = activePlayer.value;
             songIcon.value = getIconForPlayer(identity);
@@ -95,7 +95,7 @@ const Media = (): BarBoxChild => {
                 current = activePlayer.value.track_title;
                 self.reveal_child = true;
                 Utils.timeout(3000, () => {
-                    !self.is_destroyed && (self.reveal_child = false);
+                    if (!self.is_destroyed) self.reveal_child = false;
                 });
             });
         },
@@ -129,10 +129,10 @@ const Media = (): BarBoxChild => {
         isVis,
         boxClass: 'media',
         props: {
-            on_hover: () => {
+            on_hover: (): void => {
                 revealer.reveal_child = true;
             },
-            on_hover_lost: () => {
+            on_hover_lost: (): void => {
                 revealer.reveal_child = false;
             },
             on_scroll_up: () => activePlayer.value?.next(),

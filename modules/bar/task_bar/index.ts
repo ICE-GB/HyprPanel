@@ -1,21 +1,24 @@
 import { launchApp, icon } from 'lib/utils';
 import icons from 'lib/icons';
 import options from 'options';
+import Box from 'types/widgets/box';
+import { BarBoxChild } from 'lib/types/bar';
+import { Child } from 'lib/types/widget';
 
 const hyprland = await Service.import('hyprland');
 const apps = await Service.import('applications');
 const { monochrome, exclusive, iconSize } = options.bar.taskbar;
 const { layer: position } = options.theme.bar;
 
-const focus = (address: string) => hyprland.messageAsync(`dispatch focuswindow address:${address}`);
+const focus = (address: string): Promise<string> => hyprland.messageAsync(`dispatch focuswindow address:${address}`);
 
-const DummyItem = (address: string) =>
+const DummyItem = (address: string): Box<Child, { address: string }> =>
     Widget.Box({
         attribute: { address },
         visible: false,
     });
 
-const AppItem = (address: string) => {
+const AppItem = (address: string): Box<Child, { address: string }> => {
     const client = hyprland.getClient(address);
     if (!client || client.class === '') return DummyItem(address);
 
@@ -62,7 +65,7 @@ const AppItem = (address: string) => {
     );
 };
 
-function sortItems<T extends { attribute: { address: string } }>(arr: T[]) {
+function sortItems<T extends { attribute: { address: string } }>(arr: T[]): T[] {
     return arr.sort(({ attribute: a }, { attribute: b }) => {
         const aclient = hyprland.getClient(a.address)!;
         const bclient = hyprland.getClient(b.address)!;
@@ -73,7 +76,7 @@ function sortItems<T extends { attribute: { address: string } }>(arr: T[]) {
 const taskbarBox = Widget.Box({
     className: Utils.merge(
         [options.theme.bar.buttons.style.bind('value'), options.bar.windowtitle.label.bind('value')],
-        (style, showLabel) => {
+        (style) => {
             const styleMap = {
                 default: 'style1',
                 split: 'style2',
@@ -117,10 +120,10 @@ const taskbarBox = Widget.Box({
                 'event',
             );
         // 设置每隔10000毫秒执行一次
-        const intervalId = setInterval(() => {
-            let currentClientAddressList = w.children.map((c) => c.attribute.address);
+        setInterval(() => {
+            const currentClientAddressList = w.children.map((c) => c.attribute.address);
             // print("current client class: " + currentClientAddressList);
-            let newClientList = hyprland.clients.filter((c) => !currentClientAddressList.includes(c.address));
+            const newClientList = hyprland.clients.filter((c) => !currentClientAddressList.includes(c.address));
             // print("new client" + newClientList);
             if (newClientList.length > 0) {
                 // print("reset");
@@ -128,17 +131,18 @@ const taskbarBox = Widget.Box({
             }
         }, 10000);
         // 如果你想要停止这个重复执行，可以这样做：
+        // const intervalId = setInterval(()=>{});
         // clearInterval(intervalId);
     },
 });
 
-const TaskBar = () => {
+const TaskBar = (): BarBoxChild => {
     return {
         component: taskbarBox,
         isVisible: true,
         boxClass: 'taskbar',
         props: {
-            on_secondary_click: () => {
+            on_secondary_click: (): void => {
                 taskbarBox.children = sortItems(hyprland.clients.map((c) => AppItem(c.address)));
             },
         },

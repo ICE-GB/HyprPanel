@@ -8,7 +8,7 @@ import Window from 'types/widgets/window.js';
 import { Attribute, Child } from 'lib/types/widget.js';
 import options from 'options.js';
 
-export default () => {
+export default (): Window<Child, Attribute> => {
     return DropdownMenu({
         name: 'dashboardmenu',
         transition: options.menus.transition.bind('value'),

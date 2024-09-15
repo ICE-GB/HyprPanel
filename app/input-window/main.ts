@@ -1,8 +1,9 @@
 import Gtk from 'gi://Gtk?version=3.0';
+import Entry from 'types/widgets/entry';
 
 let value: string | null;
 
-const copyTo = (value: string | null) => {
+const copyTo = (value: string | null): void => {
     if (value == null) {
         return;
     }
@@ -11,7 +12,7 @@ const copyTo = (value: string | null) => {
         .catch((err) => print(err));
 };
 
-const InputWindowEntry = () => {
+const InputWindowEntry = (): Entry<unknown> => {
     const entry = Widget.Entry({
         placeholder_text: 'Input...',
         on_change: ({ text }) => {
@@ -25,7 +26,7 @@ const InputWindowEntry = () => {
     return entry;
 };
 
-const InputWindow = () => {
+const InputWindow = (): Gtk.Window => {
     const name = 'input-window';
     const win = new Gtk.Window({
         name: name,

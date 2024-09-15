@@ -19,7 +19,7 @@ export type Binding<T> = import('types/service').Binding<any, any, T>;
  */
 export function icon(name: string | null, fallback = icons.missing): string {
     const validateSubstitute = (name: string): name is SubstituteKeys => name in substitutes;
-    const foundMatch = (name: string, substituteKey: string) => RegExp(substituteKey, 'i').test(name);
+    const foundMatch = (name: string, substituteKey: string): boolean => RegExp(substituteKey, 'i').test(name);
 
     if (!name) return fallback || '';
 

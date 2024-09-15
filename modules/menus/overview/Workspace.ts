@@ -2,14 +2,21 @@ import Window from './Window';
 import Gdk from 'gi://Gdk';
 import Gtk from 'gi://Gtk?version=3.0';
 import options from 'options';
+import { Box } from 'types/widgets/box';
+import { Child } from 'lib/types/widget';
 
 const TARGET = [Gtk.TargetEntry.new('text/plain', Gtk.TargetFlags.SAME_APP, 0)];
-const scale = (size: number) => (options.menus.overview.scale.value / 100) * size;
+const scale = (size: number): number => (options.menus.overview.scale.value / 100) * size;
 const hyprland = await Service.import('hyprland');
 
-const dispatch = (args: string) => hyprland.messageAsync(`dispatch ${args}`);
+const dispatch = (args: string): Promise<string> => hyprland.messageAsync(`dispatch ${args}`);
 
-const size = (id: number) => {
+const size = (
+    id: number,
+): {
+    h: number;
+    w: number;
+} => {
     const def = { h: 1080, w: 1920 };
     const ws = hyprland.getWorkspace(id);
     if (!ws) return def;
@@ -18,11 +25,11 @@ const size = (id: number) => {
     return mon ? { h: mon.height, w: mon.width } : def;
 };
 
-export default (id: number) => {
+export default (id: number): Box<Child, { id: number }> => {
     const fixed = Widget.Fixed();
 
     // TODO: early return if position is unchaged
-    async function update() {
+    async function update(): Promise<void> {
         const json = await hyprland.messageAsync('j/clients').catch(() => null);
         if (!json) return;
 
@@ -33,7 +40,7 @@ export default (id: number) => {
             .forEach((c) => {
                 const x = c.at[0] - (hyprland.getMonitor(c.monitor)?.x || 0);
                 const y = c.at[1] - (hyprland.getMonitor(c.monitor)?.y || 0);
-                c.mapped && fixed.put(Window(c), scale(x), scale(y));
+                if (c.mapped) fixed.put(Window(c), scale(x), scale(y));
             });
         fixed.show_all();
     }
