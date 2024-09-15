@@ -17,7 +17,7 @@ const Bluetooth = (): BarBoxChild => {
 
     const btText = Widget.Label({
         label: Utils.merge([bluetooth.bind('enabled'), bluetooth.bind('connected_devices')], (btEnabled, btDevices) => {
-            return btEnabled && btDevices.length ? ` Connected (${btDevices.length})` : btEnabled ? 'On' : 'Off';
+            return btEnabled && btDevices.length ? `On(${btDevices.length})` : btEnabled ? 'On' : 'Off';
         }),
         class_name: 'bar-button-label bluetooth',
     });
