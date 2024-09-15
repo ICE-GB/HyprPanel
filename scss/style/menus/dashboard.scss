@@ -2,6 +2,17 @@
     font-size: $font-size * $bar-menus-menu-dashboard-scaling * 0.01;
 }
 
+.dashboard-content-container-scrollable {
+  margin: 0em;
+  min-width: 30.6em * $bar-menus-menu-notifications-scaling * 0.01;
+  min-height: $bar-menus-menu-notifications-height * $bar-menus-menu-notifications-scaling * 0.01;
+  background: if($bar-menus-monochrome, $bar-menus-background, $bar-menus-menu-notifications-background);
+  border: $bar-menus-border-size solid if($bar-menus-monochrome, $bar-menus-border-color, $bar-menus-menu-notifications-border);
+  border-radius: $bar-menus-border-radius;
+  margin-right: 0.45em;
+  opacity: $bar-menus-opacity * 0.01;
+}
+
 .dashboard-content-items {
     margin-left: 0.5em;
     min-width: 28.5em;
