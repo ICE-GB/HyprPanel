@@ -12,6 +12,7 @@ import {
     BatteryLabel,
     Clock,
     SysTray,
+    TaskBar,
 
     // Custom Modules
     Ram,
@@ -61,7 +62,8 @@ type Section =
     | 'submap'
     | 'weather'
     | 'power'
-    | 'systray';
+    | 'systray'
+    | 'taskbar';
 
 type Layout = {
     left: Section[];
@@ -113,6 +115,7 @@ const widget = {
     submap: (): Button<Child, Attribute> => WidgetContainer(Submap()),
     weather: (): Button<Child, Attribute> => WidgetContainer(Weather()),
     power: (): Button<Child, Attribute> => WidgetContainer(Power()),
+    taskbar: (): Button<Child, Attribute> => WidgetContainer(TaskBar()),
 };
 
 type GdkMonitors = {
