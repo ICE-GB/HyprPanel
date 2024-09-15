@@ -1,0 +1,15 @@
+#!/nix/store/mm0pa3z7kk6jh1i9rkxqxjqmd8h1qpxf-bash-5.2p37/bin/bash
+export PATH=/nix/store/ypn3z7dfy3d9w91hndlqyff72l6j04qc-dart-sass-1.80.5/bin:/nix/store/j2x574lb7dxj7ksc3gfbzn917hs6g5nk-fd-10.2.0/bin:/nix/store/pdrw6lilvfk2z9hqi370kzkz7n2gdj3z-btop-1.4.0/bin:/nix/store/nknka9rgif83wdqhi7xj8s1m3r2ykj5l-pipewire-1.2.5/bin:/nix/store/dl087c9ph8lni59k5qzibjz9ysj374g3-bluez-5.78/bin:/nix/store/4j657ag40n77vsxwr0gh8j9rndxldc6k-bluez-tools-0-unstable-2020-10-24/bin:/nix/store/ryq93s931bx5rj2ra6cxx3mbmk51pr6r-networkmanager-1.48.10/bin:/nix/store/r6dvqafsfnjcsvxf5svza1wvv1nrmhn0-matugen-2.4.0/bin:/nix/store/69k8cdv6hahrznvxw4i0c4lgqiqjqm5y-swww-0.9.5/bin:/nix/store/7vzs218x0mn58azdckb8xizsyvs1yyyk-grimblast-unstable-2024-01-11/bin:/nix/store/mbq03x5z2z34cgqpzgz7k1p4gjz760h2-gpu-screen-recorder-4.2.3/bin:/nix/store/6k7byvb4291px0mw1335d83fmz9djdq4-brightnessctl-0.5.1/bin:/nix/store/kipvmg5spwxacxdwmm7vabc8rkh1l9dp-gnome-bluetooth-47.1/bin:/nix/store/h14vnhh0x6fhlr1m19fz90s043z85r3r-python3-3.12.7-env/bin:$PATH
+export GI_TYPELIB_PATH=/nix/store/8chsh68ym8kw5vmm0grd50m7a6dn5fdg-libgtop-2.41.3/lib/girepository-1.0:/nix/store/1aarnpr08jzcilrkwawdpr40xyfn7cj1-glib-2.82.1-bin/lib/girepository-1.0:$GI_TYPELIB_PATH
+
+# 定义配置文件路径
+config_file="$XDG_CONFIG_HOME/ags/config.js"
+
+# 检查配置文件是否存在
+if [[ -f "$config_file" ]]; then
+    # 如果配置文件存在，执行 ags 命令
+    "/nix/store/1nwwk4xnm0ynknv2jnri8m3af3gzaidf-ags-1.8.2/bin/ags" -b hyprpanel -c "$config_file" "$@"
+else
+    echo "配置文件不存在：$config_file"
+fi
+

@@ -1,2 +1,6 @@
 .weather.json
 node_modules
+.direnv
+result
+types
+.idea

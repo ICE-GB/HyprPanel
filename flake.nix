@@ -44,7 +44,14 @@
               pkgsFor.${system}.gpu-screen-recorder
               pkgsFor.${system}.brightnessctl
               pkgsFor.${system}.gnome-bluetooth
-              pkgsFor.${system}.python3
+              (pkgsFor.${system}.python3.withPackages (
+                p:
+                  with p; [
+                    pygobject3
+                    pygobject-stubs
+                    dbus-python
+                  ]
+              ))
               pkgsFor.${system}.matugen
               inputs.ags.packages.${system}.agsWithTypes
             ];
@@ -55,6 +62,7 @@
             shellHook = ''
               export GDK_BACKEND=wayland
               export GI_TYPELIB_PATH=${pkgsFor.${system}.libgtop}/lib/girepository-1.0:${pkgsFor.${system}.glib}/lib/girepository-1.0:$GI_TYPELIB_PATH
+              ln -sfn ${inputs.ags.packages.${system}.agsWithTypes}/share/com.github.Aylur.ags/types types
             '';
           }
       );
