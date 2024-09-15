@@ -14,6 +14,7 @@ import { OsdTheme } from './osd/index';
 import { Matugen } from './menus/matugen';
 import { CustomModuleTheme } from 'customModules/theme';
 import { PowerMenuTheme } from './menus/power';
+import { OverviewMenuTheme } from './menus/overview';
 
 export const themePages = {
     'General Settings': MenuTheme(),
@@ -32,6 +33,7 @@ export const themePages = {
     'Volume Menu': VolumeMenuTheme(),
     'Power Menu': PowerMenuTheme(),
     'Custom Modules': CustomModuleTheme(),
+    'Overview Modules': OverviewMenuTheme(),
 } as const;
 
 export type ThemePage = keyof typeof themePages;

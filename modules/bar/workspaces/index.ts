@@ -23,6 +23,9 @@ const Workspaces = (monitor = -1): BarBoxChild => {
         isVisible: true,
         boxClass: 'workspaces',
         props: {
+            on_primary_click: () => {
+                App.toggleWindow('overview');
+            },
             setup: (self: SelfButton): void => {
                 Utils.merge(
                     [scroll_speed.bind('value'), options.bar.workspaces.hideUnoccupied.bind('value')],

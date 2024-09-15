@@ -9,6 +9,7 @@ import { PowerMenuSettings } from './menus/power';
 import { MediaMenuSettings } from './menus/media';
 import { BluetoothMenuSettings } from './menus/bluetooth';
 import { VolumeMenuSettings } from './menus/volume';
+import { OverivewMenuSettings } from './menus/overivew';
 
 export const configPages = {
     General: BarGeneral(),
@@ -22,6 +23,7 @@ export const configPages = {
     'Custom Modules': CustomModuleSettings(),
     'Bluetooth Menu': BluetoothMenuSettings(),
     'Power Menu': PowerMenuSettings(),
+    'Overview Menu': OverivewMenuSettings(),
 } as const;
 
 export type ConfigPage = keyof typeof configPages;

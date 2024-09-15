@@ -25,6 +25,11 @@ export const BarGeneral = (): Scrollable<Child, Attribute> => {
                     max: 900,
                 }),
                 Option({
+                    opt: options.theme.transition,
+                    title: 'Transition',
+                    type: 'string',
+                }),
+                Option({
                     opt: options.dummy,
                     title: 'Config',
                     subtitle: 'WARNING: Importing a configuration will replace your current configuration settings.',

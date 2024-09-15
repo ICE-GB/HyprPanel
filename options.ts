@@ -106,6 +106,7 @@ const options = mkOptions(OPTIONS, {
             name: opt('Ubuntu Nerd Font'),
             weight: opt(600),
         },
+        transition: opt('200ms'),
         notification: {
             scaling: opt(100),
             background: opt(tertiary_colors.mantle),
@@ -865,6 +866,10 @@ const options = mkOptions(OPTIONS, {
                             radius: opt('0.2em'),
                         },
                     },
+                    overview: {
+                        background: opt(colors.crust),
+                        border: opt(colors.surface0),
+                    },
                 },
             },
         },
@@ -1283,6 +1288,11 @@ const options = mkOptions(OPTIONS, {
                     JSON.parse(Utils.readFile(`${App.configDir}/.weather.json`) || '{}')?.weather_api_key || '',
                 ),
             },
+        },
+        overview: {
+            scale: opt(9),
+            workspaces: opt(7),
+            monochromeIcon: opt(false),
         },
     },
 
