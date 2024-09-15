@@ -93,10 +93,18 @@ const Volume = (): BarBoxChild => {
                         runAsyncCommand(middleClick.value, { clicked, event });
                     };
                     self.on_scroll_up = (clicked: Button<Child, Attribute>, event: Gdk.Event): void => {
-                        throttledHandler(scrollUp.value, { clicked, event });
+                        if (scrollUp.value.length === 0) {
+                            audio.speaker.volume += 0.02;
+                        } else {
+                            throttledHandler(scrollUp.value, { clicked, event });
+                        }
                     };
                     self.on_scroll_down = (clicked: Button<Child, Attribute>, event: Gdk.Event): void => {
-                        throttledHandler(scrollDown.value, { clicked, event });
+                        if (scrollDown.value.length === 0) {
+                            audio.speaker.volume -= 0.02;
+                        } else {
+                            throttledHandler(scrollDown.value, { clicked, event });
+                        }
                     };
                 });
             },

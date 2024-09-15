@@ -941,8 +941,8 @@ const options = mkOptions(OPTIONS, {
             label: opt(true),
             rightClick: opt(''),
             middleClick: opt(''),
-            scrollUp: opt('pactl set-sink-volume @DEFAULT_SINK@ +5%'),
-            scrollDown: opt('pactl set-sink-volume @DEFAULT_SINK@ -5%'),
+            scrollUp: opt(''),
+            scrollDown: opt(''),
         },
         network: {
             truncation: opt(true),
