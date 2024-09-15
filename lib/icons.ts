@@ -10,6 +10,13 @@ export const substitutes = {
     'preferences-system': 'emblem-system-symbolic',
     'com.github.Aylur.ags-symbolic': 'controls-symbolic',
     'com.github.Aylur.ags': 'controls-symbolic',
+    'code-url-handler': 'code',
+    'Bytedance-feishu': 'bytedance-feishu',
+    'bytedance-feishu-symbolic': 'bytedance-feishu',
+    wechat: 'com.tencent.wechat',
+    'foot-symbolic': 'terminal-symbolic',
+    'idea-symbolic': 'idea',
+    '(.*)idea(.*)': 'idea',
 } as const;
 
 export default {
