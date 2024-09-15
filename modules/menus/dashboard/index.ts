@@ -8,7 +8,7 @@ import Window from 'types/widgets/window.js';
 import { Attribute, Child } from 'lib/types/widget.js';
 import options from 'options.js';
 
-export default (): Window<Child, Attribute> => {
+export default () => {
     return DropdownMenu({
         name: 'dashboardmenu',
         transition: options.menus.transition.bind('value'),
@@ -21,10 +21,17 @@ export default (): Window<Child, Attribute> => {
                     class_name: 'dashboard-content-container',
                     vertical: true,
                     children: [
-                        Widget.Box({
-                            class_name: 'dashboard-content-items',
-                            vertical: true,
-                            children: [Profile(), Shortcuts(), Controls(), Directories(), Stats()],
+                        Widget.Scrollable({
+                            vscroll: 'automatic',
+                            // hscroll: "automatic",
+                            hexpand: false,
+                            vexpand: false,
+                            class_name: 'dashboard-content-container-scrollable',
+                            child: Widget.Box({
+                                class_name: 'dashboard-content-items',
+                                vertical: true,
+                                children: [Profile(), Shortcuts(), Controls(), Directories(), Stats()],
+                            }),
                         }),
                     ],
                 }),
