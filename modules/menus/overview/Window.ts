@@ -25,9 +25,8 @@ export default ({ address, size: [w, h], class: c, title }: Client) =>
             ),
             icon: monochrome.bind().as((m) => {
                 const app = apps.list.find((app) => app.match(c));
-                if (!app) return icons.fallback.executable + (m ? '-symbolic' : '');
-
-                return icon(app.icon_name + (m ? '-symbolic' : ''), icons.fallback.executable + (m ? '-symbolic' : ''));
+                const icon_name = app ? app.icon_name + (m ? '-symbolic' : '') : c + (m ? '-symbolic' : '');
+                return icon(icon_name, icons.fallback.executable + (m ? '-symbolic' : ''));
             }),
         }),
         on_secondary_click: () => dispatch(`closewindow address:${address}`),
