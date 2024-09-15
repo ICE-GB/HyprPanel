@@ -898,6 +898,7 @@ const options = mkOptions(OPTIONS, {
             truncation: opt(true),
             truncation_size: opt(7),
             label: opt(true),
+            networkSpeedLabel: opt(true),
             rightClick: opt(''),
             middleClick: opt(''),
             scrollUp: opt(''),
