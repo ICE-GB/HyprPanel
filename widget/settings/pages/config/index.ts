@@ -7,6 +7,7 @@ import { OSDSettings } from './osd/index';
 import { CustomModuleSettings } from 'customModules/config';
 import { PowerMenuSettings } from './menus/power';
 import { GBox } from 'lib/types/widget';
+import { OverivewMenuSettings } from './menus/overivew';
 
 type Page =
     | 'General'
@@ -16,7 +17,8 @@ type Page =
     | 'Power Menu'
     | 'Notifications'
     | 'OSD'
-    | 'Custom Modules';
+    | 'Custom Modules'
+    | 'Overview Menu';
 
 const CurrentPage = Variable<Page>('General');
 
@@ -29,6 +31,7 @@ const pagerMap: Page[] = [
     'Clock Menu',
     'Dashboard Menu',
     'Custom Modules',
+    'Overview Menu',
 ];
 
 export const SettingsMenu = (): GBox => {
@@ -61,6 +64,7 @@ export const SettingsMenu = (): GBox => {
                         'Dashboard Menu': DashboardMenuSettings(),
                         'Custom Modules': CustomModuleSettings(),
                         'Power Menu': PowerMenuSettings(),
+                        'Overview Menu': OverivewMenuSettings(),
                     },
                     shown: CurrentPage.bind('value'),
                 }),
