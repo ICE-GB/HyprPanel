@@ -4,14 +4,16 @@ import Gdk from 'gi://Gdk';
 import Gtk from 'gi://Gtk?version=3.0';
 import options from 'options';
 import icons from 'lib/icons';
+import Button from 'types/widgets/button';
+import Icon from 'types/widgets/icon';
 
 const monochrome = options.menus.overview.monochromeIcon;
 const TARGET = [Gtk.TargetEntry.new('text/plain', Gtk.TargetFlags.SAME_APP, 0)];
 const hyprland = await Service.import('hyprland');
 const apps = await Service.import('applications');
-const dispatch = (args: string) => hyprland.messageAsync(`dispatch ${args}`);
+const dispatch = (args: string): Promise<string> => hyprland.messageAsync(`dispatch ${args}`);
 
-export default ({ address, size: [w, h], class: c, title }: Client) =>
+export default ({ address, size: [w, h], class: c, title }: Client): Button<Icon<unknown>, { address: string }> =>
     Widget.Button({
         class_name: 'client',
         attribute: { address },

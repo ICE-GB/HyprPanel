@@ -8,8 +8,8 @@
     },
     "scripts": {
         "lint": "eslint --config .eslintrc.js .",
-        "lint:fix": "eslint --config .eslintrc.js .",
-        "format": "prettier --write 'modules/**/*.ts'"
+        "lint:fix": "eslint --config .eslintrc.js . --fix",
+        "format": "prettier --write '**/*.ts' '**/*.js'"
     },
     "keywords": [],
     "author": "",
