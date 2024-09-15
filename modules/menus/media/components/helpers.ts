@@ -2,8 +2,9 @@ const media = await Service.import('mpris');
 import options from 'options.js';
 import { MprisPlayer } from 'types/service/mpris';
 const { tint, color } = options.theme.bar.menus.menu.media.card;
+const { preferred } = options.bar.media;
 
-const curPlayer = Variable('');
+const curPlayer = Variable((media.getPlayer(preferred.value) || media.players[0]).bus_name);
 
 export const generateAlbumArt = (imageUrl: string): string => {
     const userTint = tint.value;

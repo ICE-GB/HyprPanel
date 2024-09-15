@@ -990,6 +990,7 @@ const options = mkOptions(OPTIONS, {
             show_label: opt(true),
             truncation_size: opt(30),
             show_active_only: opt(false),
+            preferred: opt('mpd'),
             rightClick: opt(''),
             middleClick: opt(''),
         },

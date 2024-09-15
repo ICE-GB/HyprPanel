@@ -796,6 +796,12 @@ export const BarSettings = (): Scrollable<Gtk.Widget, Gtk.Widget> => {
                     type: 'boolean',
                 }),
                 Option({
+                    opt: options.bar.media.preferred,
+                    title: 'Preferred Player',
+                    subtitle: 'Button will show this player by default.',
+                    type: 'string',
+                }),
+                Option({
                     opt: options.bar.media.rightClick,
                     title: 'Right Click',
                     type: 'string',

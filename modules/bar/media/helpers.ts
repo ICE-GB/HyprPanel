@@ -14,6 +14,7 @@ const getIconForPlayer = (playerName: string): string => {
         ['Mpv', ''],
         ['Rhythmbox', '󰓃'],
         ['Google Chrome', ''],
+        ['Chrome', ''],
         ['Brave Browser', '󰖟'],
         ['Chromium', ''],
         ['Opera', ''],
@@ -22,7 +23,7 @@ const getIconForPlayer = (playerName: string): string => {
         ['Thorium', '󰈹'],
         ['Zen Browser', '󰈹'],
         ['Floorp', '󰈹'],
-        ['(.*)', '󰝚'],
+        ['MPD(.*)', '󰝚'],
     ];
 
     const foundMatch = windowTitleMap.find((wt) => RegExp(wt[0], 'i').test(playerName));
@@ -44,6 +45,7 @@ export const generateMediaLabel = (
     show_label: Opt<boolean>,
     format: Opt<string>,
     songIcon: Variable<string>,
+    songTitle: Variable<string>,
     activePlayer: Variable<MprisPlayer>,
 ): string => {
     if (activePlayer.value && show_label.value) {
@@ -81,9 +83,12 @@ export const generateMediaLabel = (
             mediaLabel = `${truncatedLabel.substring(0, maxLabelSize)}...`;
         }
 
+        songIcon.value = getIconForPlayer(activePlayer.value?.identity || '');
+        songTitle.value = mediaLabel.length ? mediaLabel : 'Media';
         return mediaLabel.length ? mediaLabel : 'Media';
     } else {
         songIcon.value = getIconForPlayer(activePlayer.value?.identity || '');
+        songTitle.value = 'No media playing...';
         return `Media`;
     }
 };
