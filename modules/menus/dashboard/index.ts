@@ -11,6 +11,37 @@ import options from 'options.js';
 const { controls, shortcuts, stats, directories } = options.menus.dashboard;
 
 export default (): Window<Child, Attribute> => {
+    const box = Utils.merge(
+        [
+            controls.enabled.bind('value'),
+            shortcuts.enabled.bind('value'),
+            stats.enabled.bind('value'),
+            directories.enabled.bind('value'),
+        ],
+        (isControlsEnabled, isShortcutsEnabled, isStatsEnabled, isDirectoriesEnabled) => {
+            return Widget.Box({
+                class_name: 'dashboard-content-items',
+                vertical: true,
+                children: [
+                    Profile(),
+                    ...(isShortcutsEnabled ? [Shortcuts()] : []),
+                    ...(isControlsEnabled ? [Controls()] : []),
+                    ...(isDirectoriesEnabled ? [Directories()] : []),
+                    ...(isStatsEnabled ? [Stats()] : []),
+                ],
+            });
+        },
+    );
+
+    const scrollable = Widget.Scrollable({
+        vscroll: 'automatic',
+        // hscroll: "automatic",
+        hexpand: false,
+        vexpand: false,
+        class_name: 'dashboard-content-container-scrollable',
+        child: box,
+    });
+
     return DropdownMenu({
         name: 'dashboardmenu',
         transition: options.menus.transition.bind('value'),
@@ -22,29 +53,7 @@ export default (): Window<Child, Attribute> => {
                 Widget.Box({
                     class_name: 'dashboard-content-container',
                     vertical: true,
-                    children: Utils.merge(
-                        [
-                            controls.enabled.bind('value'),
-                            shortcuts.enabled.bind('value'),
-                            stats.enabled.bind('value'),
-                            directories.enabled.bind('value'),
-                        ],
-                        (isControlsEnabled, isShortcutsEnabled, isStatsEnabled, isDirectoriesEnabled) => {
-                            return [
-                                Widget.Box({
-                                    class_name: 'dashboard-content-items',
-                                    vertical: true,
-                                    children: [
-                                        Profile(),
-                                        ...(isShortcutsEnabled ? [Shortcuts()] : []),
-                                        ...(isControlsEnabled ? [Controls()] : []),
-                                        ...(isDirectoriesEnabled ? [Directories()] : []),
-                                        ...(isStatsEnabled ? [Stats()] : []),
-                                    ],
-                                }),
-                            ];
-                        },
-                    ),
+                    children: [scrollable],
                 }),
             ],
         }),
