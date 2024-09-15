@@ -1,0 +1,33 @@
+window#overview .overview {
+    @include floating-widget;
+    @include spacing;
+    .workspace {
+        &.active>widget {
+            border-color: if($bar-menus-monochrome, $bar-menus-slider-background, $bar-menus-menu-overview-border);
+        }
+
+        >widget {
+            @include widget;
+            border-radius: if($radius ==0, 0, $radius + $padding);
+
+            &:hover {
+                background-color: if($bar-menus-monochrome, $bar-menus-slider-background, $bar-menus-menu-overview-background);
+            }
+
+            &:drop(active) {
+                border-color: if($bar-menus-monochrome, $bar-menus-slider-background, $bar-menus-menu-overview-border);
+            }
+        }
+    }
+
+    .client {
+        @include button;
+        border-radius: $radius;
+        margin: $padding;
+
+        &.hidden {
+            @include hidden;
+            transition: 0;
+        }
+    }
+}

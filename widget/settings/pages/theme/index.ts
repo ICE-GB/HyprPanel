@@ -15,6 +15,7 @@ import { Matugen } from './menus/matugen';
 import { CustomModuleTheme } from 'customModules/theme';
 import { PowerMenuTheme } from './menus/power';
 import { GBox } from 'lib/types/widget';
+import { OverviewMenuTheme } from './menus/overview';
 
 type Page =
     | 'General Settings'
@@ -32,7 +33,8 @@ type Page =
     | 'System Tray'
     | 'Volume Menu'
     | 'Power Menu'
-    | 'Custom Modules';
+    | 'Custom Modules'
+    | 'Overview Menu';
 
 const CurrentPage = Variable<Page>('General Settings');
 
@@ -53,6 +55,7 @@ const pagerMap: Page[] = [
     'Volume Menu',
     'Power Menu',
     'Custom Modules',
+    'Overview Menu',
 ];
 
 export const ThemesMenu = (): GBox => {
@@ -102,6 +105,7 @@ export const ThemesMenu = (): GBox => {
                         'Volume Menu': VolumeMenuTheme(),
                         'Power Menu': PowerMenuTheme(),
                         'Custom Modules': CustomModuleTheme(),
+                        'Overview Menu': OverviewMenuTheme(),
                     },
                     shown: CurrentPage.bind('value'),
                 }),

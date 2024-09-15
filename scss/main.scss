@@ -11,6 +11,13 @@
 @import "style/common/floating-widget.scss";
 @import "style/common/widget-button.scss";
 
+// mixins
+@import "style/mixins/a11y-button.scss";
+@import "style/mixins/button.scss";
+@import "style/mixins/hidden.scss";
+@import "style/mixins/spacing.scss";
+@import "style/mixins/widget.scss";
+
 //general styles
 @import "style/common/general";
 
@@ -41,6 +48,7 @@
 @import "style/menus/calendar";
 @import "style/menus/energy";
 @import "style/menus/dashboard";
+@import "style/menus/overview";
 
 //notifications
 @import "style/notifications/popups";

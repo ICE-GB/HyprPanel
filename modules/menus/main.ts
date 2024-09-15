@@ -9,6 +9,7 @@ import CalendarMenu from './calendar/index.js';
 import EnergyMenu from './energy/index.js';
 import DashboardMenu from './dashboard/index.js';
 import PowerDropdown from './powerDropdown/index.js';
+import Overview from './overview/Overview.js';
 
 export default [
     PowerMenu(),
@@ -22,4 +23,5 @@ export default [
     EnergyMenu(),
     DashboardMenu(),
     PowerDropdown(),
+    Overview(),
 ];

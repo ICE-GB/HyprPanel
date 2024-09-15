@@ -50,3 +50,13 @@ $primary_fg: mix($mauve, $primary_bg, 70%);
 $secondary_fg: $green;
 $secondary_bg: $light-background;
 $shadow-color: #1e1e2e;
+
+// origin mixin need
+$fg: $default_fg;
+$hover-fg: $default_fg;
+$widget-bg: $default_bg;
+$hover-bg: $primary_bg;
+$border: $surface0;
+$border-color: $surface0;
+$border-width: 0;
+$active-gradient: linear-gradient(to right, $default_bg, darken($default_bg, 4%));
