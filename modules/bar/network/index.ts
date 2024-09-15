@@ -22,6 +22,7 @@ const formatWifiInfo = (wifi: Wifi): string => {
 
 const {
     label: networkLabel,
+    networkSpeedLabel,
     truncation,
     truncation_size,
     rightClick,
@@ -30,6 +31,17 @@ const {
     scrollUp,
     showWifiInfo,
 } = options.bar.network;
+
+const networkInterface = options.bar.customModules.netstat.networkInterface;
+
+const network_traffic = Variable('', {
+  listen: [
+    `${App.configDir}/scripts/network_traffic.sh ${networkInterface}`,
+    (n) => {
+      return n;
+    },
+  ],
+});
 
 const Network = (): BarBoxChild => {
     return {
@@ -88,6 +100,18 @@ const Network = (): BarBoxChild => {
                             });
                         },
                     ),
+                }),
+                Widget.Box({
+                    vpack: 'center',
+                    child: Utils.merge([networkSpeedLabel.bind('value')], (showLbl) => {
+                        if (!showLbl) {
+                            return Widget.Box();
+                        }
+                        return Widget.Label({
+                            class_name: 'bar-button-label network',
+                            label: network_traffic.bind(),
+                        });
+                    }),
                 }),
             ],
         }),

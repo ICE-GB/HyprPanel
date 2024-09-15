@@ -527,6 +527,11 @@ export const BarSettings = (): Scrollable<Gtk.Widget, Gtk.Widget> => {
                     type: 'boolean',
                 }),
                 Option({
+                    opt: options.bar.network.networkSpeedLabel,
+                    title: 'Show Network Speed',
+                    type: 'boolean',
+                }),
+                Option({
                     opt: options.bar.network.truncation,
                     title: 'Truncate Network Name',
                     subtitle: 'Will truncate the network name to the specified size below.',

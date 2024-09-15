@@ -949,6 +949,7 @@ const options = mkOptions(OPTIONS, {
             showWifiInfo: opt(false),
             truncation_size: opt(7),
             label: opt(true),
+            networkSpeedLabel: opt(true),
             rightClick: opt(''),
             middleClick: opt(''),
             scrollUp: opt(''),
