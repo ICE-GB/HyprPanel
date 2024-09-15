@@ -35,12 +35,12 @@ const {
 const networkInterface = options.bar.customModules.netstat.networkInterface;
 
 const network_traffic = Variable('', {
-  listen: [
-    `${App.configDir}/scripts/network_traffic.sh ${networkInterface}`,
-    (n) => {
-      return n;
-    },
-  ],
+    listen: [
+        `${App.configDir}/scripts/network_traffic.sh ${networkInterface}`,
+        (n): string => {
+            return n;
+        },
+    ],
 });
 
 const Network = (): BarBoxChild => {

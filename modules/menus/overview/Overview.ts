@@ -2,12 +2,15 @@ import PopupWindow from '../shared/popup/index.js';
 import Workspace from './Workspace';
 import options from 'options';
 import { range } from 'lib/utils';
+import Window from 'types/widgets/window';
+import { Attribute, Child } from 'lib/types/widget.js';
+import Box from 'types/widgets/box';
 
 const hyprland = await Service.import('hyprland');
 
 const { workspaces } = options.menus.overview;
 
-const Overview = (ws: number) =>
+const Overview = (ws: number): Box<Child, { id: number }> =>
     Widget.Box({
         class_name: 'overview horizontal',
         children:
@@ -39,7 +42,7 @@ const Overview = (ws: number) =>
         },
     });
 
-export default () =>
+export default (): Window<Child, Attribute> =>
     PopupWindow({
         name: 'overview',
         transition: 'crossfade',

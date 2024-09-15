@@ -22,4 +22,16 @@ module.exports = {
         'import/no-unresolved': 'off',
         quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
     },
+    // 其他 ESLint 配置
+    overrides: [
+        {
+            // 对于所有 .js 文件
+            files: ['*.js'],
+            // 禁用参数和返回类型规则
+            rules: {
+                '@typescript-eslint/explicit-function-return-type': 'off',
+                '@typescript-eslint/explicit-module-boundary-types': 'off',
+            }
+        }
+    ],
 };

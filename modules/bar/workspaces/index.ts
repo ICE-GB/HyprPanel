@@ -23,7 +23,7 @@ const Workspaces = (monitor = -1): BarBoxChild => {
         isVisible: true,
         boxClass: 'workspaces',
         props: {
-            on_primary_click: () => {
+            on_primary_click: (): void => {
                 App.toggleWindow('overview');
             },
             setup: (self: SelfButton): void => {
