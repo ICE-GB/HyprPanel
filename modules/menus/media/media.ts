@@ -7,6 +7,7 @@ import options from 'options.js';
 import { BoxWidget } from 'lib/types/widget.js';
 
 const { tint, color } = options.theme.bar.menus.menu.media.card;
+const { preferred } = options.bar.media;
 
 const generateAlbumArt = (imageUrl: string): string => {
     const userTint = tint.value;
@@ -27,7 +28,7 @@ const generateAlbumArt = (imageUrl: string): string => {
     return css;
 };
 const Media = (): BoxWidget => {
-    const curPlayer = Variable('');
+    const curPlayer = Variable((media.getPlayer(preferred.value) || media.players[0]).bus_name);
 
     media.connect('changed', () => {
         const statusOrder = {
