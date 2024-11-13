@@ -946,6 +946,7 @@ const options = mkOptions(OPTIONS, {
             iconSize: opt(0),
             monochrome: opt(false),
             exclusive: opt(false),
+            ignore: opt<string[]>(['xwaylandvideobridge']),
         },
         volume: {
             label: opt(true),

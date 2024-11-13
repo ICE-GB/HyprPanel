@@ -7,7 +7,7 @@ import { Child } from 'lib/types/widget';
 
 const hyprland = await Service.import('hyprland');
 const apps = await Service.import('applications');
-const { monochrome, exclusive, iconSize } = options.bar.taskbar;
+const { monochrome, exclusive, iconSize, ignore } = options.bar.taskbar;
 const { layer: position } = options.theme.bar;
 
 const focus = (address: string): Promise<string> => hyprland.messageAsync(`dispatch focuswindow address:${address}`);
@@ -20,7 +20,7 @@ const DummyItem = (address: string): Box<Child, { address: string }> =>
 
 const AppItem = (address: string): Box<Child, { address: string }> => {
     const client = hyprland.getClient(address);
-    if (!client || client.class === '') return DummyItem(address);
+    if (!client || client.class === '' || ignore.value.includes(client.class)) return DummyItem(address);
 
     const app = apps.list.find((app) => app.match(client.class));
 

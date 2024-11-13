@@ -398,6 +398,12 @@ export const BarSettings = (): Scrollable<Gtk.Widget, Gtk.Widget> => {
                     title: 'Exclusive',
                     type: 'boolean',
                 }),
+                Option({
+                    opt: options.bar.taskbar.ignore,
+                    title: 'Ignore List',
+                    subtitle: 'An array of applications to prevent from showing in the task bar',
+                    type: 'object',
+                }),
 
                 /*
                  ******************************
