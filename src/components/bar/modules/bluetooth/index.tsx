@@ -21,7 +21,7 @@ const Bluetooth = (): BarBoxChild => {
 
         const label =
             isPowered && connectDevices.length
-                ? ` Connected (${connectDevices.length})`
+                ? `ON(${connectDevices.length})`
                 : isPowered
                   ? 'On'
                   : 'Off';
