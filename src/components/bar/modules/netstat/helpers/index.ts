@@ -27,22 +27,48 @@ interface NetworkUsage {
 const formatRate = (rate: number, type: string, round: boolean): string => {
     const fixed = round ? 0 : 2;
 
+    let value: number;
+    let suffix: string;
+
     switch (true) {
         case type === 'KiB':
-            return `${(rate / 1e3).toFixed(fixed)} KiB/s`;
+            value = rate / 1e3;
+            suffix = 'K';
+            break;
         case type === 'MiB':
-            return `${(rate / 1e6).toFixed(fixed)} MiB/s`;
+            value = rate / 1e6;
+            suffix = 'M';
+            break;
         case type === 'GiB':
-            return `${(rate / 1e9).toFixed(fixed)} GiB/s`;
+            value = rate / 1e9;
+            suffix = 'G';
+            break;
         case rate >= 1e9:
-            return `${(rate / 1e9).toFixed(fixed)} GiB/s`;
+            value = rate / 1e9;
+            suffix = 'G';
+            break;
         case rate >= 1e6:
-            return `${(rate / 1e6).toFixed(fixed)} MiB/s`;
-        case rate >= 1e3:
-            return `${(rate / 1e3).toFixed(fixed)} KiB/s`;
+            value = rate / 1e6;
+            suffix = 'M';
+            break;
         default:
-            return `${rate.toFixed(fixed)} bytes/s`;
+            value = rate / 1e3;
+            suffix = 'K';
     }
+
+    // Format the number to fixed decimal places
+    const numStr = value.toFixed(fixed);
+
+    // Split into parts in case there's a decimal point
+    const [integerPart, decimalPart] = numStr.split('.');
+
+    // Pad the integer part to ensure 3 digits before suffix
+    const paddedInteger = integerPart.padStart(3, ' ');
+
+    // Recombine with decimal if needed
+    const formattedNumber = decimalPart !== undefined ? `${paddedInteger}.${decimalPart}` : paddedInteger;
+
+    return `${formattedNumber}${suffix}`;
 };
 
 /**

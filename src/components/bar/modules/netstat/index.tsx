@@ -53,7 +53,7 @@ export const Netstat = (): BarBoxChild => {
             case 'out':
                 return `${networkOutLabel.get()} ${networkService.out}`;
             default:
-                return `${networkInLabel.get()} ${networkService.in} ${networkOutLabel.get()} ${networkService.out}`;
+                return `${networkOutLabel.get()} ${networkService.out} ${networkInLabel.get()} ${networkService.in}`;
         }
     };
 
