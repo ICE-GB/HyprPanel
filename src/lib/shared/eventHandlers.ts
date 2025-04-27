@@ -51,6 +51,26 @@ export function onMiddleClick(
 }
 
 /**
+ * Connects a hover handler and returns a disconnect function.
+ */
+export function onHover(widget: GtkWidget, handler: (self: GtkWidget, event: Gdk.Event) => void): () => void {
+    const id = widget.connect('enter-notify-event', (self: GtkWidget, event: Gdk.Event) => {
+        handler(self, event);
+    });
+    return () => widget.disconnect(id);
+}
+
+/**
+ * Connects a hover lost handler and returns a disconnect function.
+ */
+export function onHoverLost(widget: GtkWidget, handler: (self: GtkWidget, event: Gdk.Event) => void): () => void {
+    const id = widget.connect('leave-notify-event', (self: GtkWidget, event: Gdk.Event) => {
+        handler(self, event);
+    });
+    return () => widget.disconnect(id);
+}
+
+/**
  * Connects a scroll handler and returns a disconnect function.
  */
 export function onScroll(
