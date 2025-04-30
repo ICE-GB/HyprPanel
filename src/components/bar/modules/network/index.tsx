@@ -7,6 +7,7 @@ import { Astal, Gtk } from 'astal/gtk3';
 import AstalNetwork from 'gi://AstalNetwork?version=0.1';
 import { formatWifiInfo, wiredIcon, wirelessIcon } from './helpers';
 import { BarBoxChild } from 'src/lib/types/bar.types';
+import { netstatLabel } from './netstat';
 
 const networkService = AstalNetwork.get_default();
 const { label, truncation, truncation_size, rightClick, middleClick, scrollDown, scrollUp, showWifiInfo } =
@@ -96,10 +97,12 @@ const Network = (): BarBoxChild => {
                 iconBinding.drop();
                 networkLabel.drop();
                 componentClassName.drop();
+                netstatLabel.drop();
             }}
         >
             <NetworkIcon />
             {networkLabel()}
+            <label className={'bar-button-label network-label'} label={netstatLabel()} />
         </box>
     );
 
