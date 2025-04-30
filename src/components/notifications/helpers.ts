@@ -31,7 +31,9 @@ export const notifHasImg = (notification: AstalNotifd.Notification): boolean => 
  */
 export const trackActiveMonitor = (curMonitor: Variable<number>): void => {
     Variable.derive([bind(hyprlandService, 'focusedMonitor')], (monitor) => {
-        curMonitor.set(monitor.id);
+        if (monitor !== null) {
+            curMonitor.set(monitor.id);
+        }
     });
 };
 

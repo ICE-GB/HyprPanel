@@ -67,7 +67,7 @@ export const getOsdMonitor = (): Variable<number> => {
         (currentMonitor, defaultMonitor, followMonitor) => {
             gdkMonitorMapper.reset();
 
-            if (followMonitor === true) {
+            if (followMonitor === true && currentMonitor !== null) {
                 const gdkMonitor = gdkMonitorMapper.mapHyprlandToGdk(currentMonitor.id);
                 return gdkMonitor;
             }
